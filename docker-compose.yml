@@ -1,0 +1,31 @@
+name: schoolkit_project
+
+services:
+  postgres:
+    image: postgres:17
+    container_name: schoolkit_db
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  django:
+    build: .
+    container_name: schoolkit_app
+    restart: always
+    volumes:
+      - ./core:/app
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+    ports:
+      - "8000:8000"
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"
+
+volumes:
+  postgres_data:
