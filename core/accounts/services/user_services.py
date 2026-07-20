@@ -17,7 +17,7 @@ def create_user(
     first_name: str,
     last_name: str,
     password: str,
-    role: str,
+    role: Role,
     school_id: str | None = None,
     phone_number: str = "",
     home_address: str,
@@ -32,7 +32,7 @@ def create_user(
     
     
     # Validate the email and password
-    if User.objects.filter(email=email).exists():
+    if User.objects.filter(email__iexact=email).exists():
         raise ValidationError(
             {"email": "A user with this email already exists."}
         )
@@ -90,7 +90,7 @@ def update_user(
         
         
         # Validating the email to ensure uniqueness before assigning
-        if User.objects.filter(email=email).exclude(id=user.id).exists():
+        if User.objects.filter(email__iexact=email).exclude(id=user.id).exists():
             raise ValidationError(
                 {"email": "A user with this email already exists."}
             )
