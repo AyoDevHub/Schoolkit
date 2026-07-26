@@ -17,6 +17,19 @@ from schools.graphql.school_class.mutations import ClassLevelMutation, ClassArmM
 
 from schools.graphql.subject.queries import SubjectQueries
 from schools.graphql.subject.mutations import SubjectMutation
+
+from people.graphql.student.queries import StudentQuery
+from people.graphql.student.mutations import StudentMutation
+
+from people.graphql.guardian.queries import GuardianQuery
+from people.graphql.guardian.mutations import GuardianMutation
+
+from people.graphql.student_guardian.queries import StudentGuardianQuery
+from people.graphql.student_guardian.mutations import StudentGuardianMutation
+
+from people.graphql.enrollment.queries import EnrollmentQuery
+from people.graphql.enrollment.mutations import EnrollmentMutation
+
 @strawberry.type
 class Query(
     UserQuery,
@@ -26,6 +39,10 @@ class Query(
     ClassLevelQueries,
     ClassArmQueries,
     SubjectQueries,
+    StudentQuery,
+    GuardianQuery,
+    StudentGuardianQuery,
+    EnrollmentQuery,
 ):
     pass
 
@@ -39,6 +56,10 @@ class Mutation(
     ClassLevelMutation,
     ClassArmMutation,
     SubjectMutation,
+    StudentMutation,
+    GuardianMutation,
+    StudentGuardianMutation,
+    EnrollmentMutation,
 ):
     pass
 
