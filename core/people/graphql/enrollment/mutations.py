@@ -20,13 +20,13 @@ from people.graphql.permissions import (
     CanWithdrawStudent,
 )
 from people.services.enrollment_services import (
-    activate_enrollment,
-    create_enrollment,
-    deactivate_enrollment,
-    promote_student,
-    transfer_student,
-    update_enrollment,
-    withdraw_student,
+    activate_enrollment as activate_enrollment_service,
+    create_enrollment as create_enrollment_service,
+    deactivate_enrollment as deactivate_enrollment_service,
+    promote_student as promote_student_service,
+    transfer_student as transfer_student_service,
+    update_enrollment as update_enrollment_service,
+    withdraw_student as withdraw_student_service,
 )
 
 
@@ -40,7 +40,7 @@ class EnrollmentMutation:
         self,
         input: CreateEnrollmentInput,
     ) -> EnrollmentType:
-        return create_enrollment(
+        return create_enrollment_service(
         school_id=input.school_id,
         student_id=input.student_id,
         academic_session_id=input.academic_session_id,
@@ -56,7 +56,7 @@ class EnrollmentMutation:
         self,
         input: UpdateEnrollmentInput,
     ) -> EnrollmentType:
-        return update_enrollment(
+        return update_enrollment_service(
         enrollment_id=input.enrollment_id,
         academic_term_id=input.academic_term_id,
         class_level_id=input.class_level_id,
@@ -70,7 +70,7 @@ class EnrollmentMutation:
         self,
         input: ActivateEnrollmentInput,
     ) -> EnrollmentType:
-        return activate_enrollment(
+        return activate_enrollment_service(
             enrollment_id=input.enrollment_id,
         )
 
@@ -81,7 +81,7 @@ class EnrollmentMutation:
         self,
         input: DeactivateEnrollmentInput,
     ) -> EnrollmentType:
-        return activate_enrollment(
+        return deactivate_enrollment_service(
             enrollment_id=input.enrollment_id,
         )
 
@@ -92,7 +92,7 @@ class EnrollmentMutation:
         self,
         input: WithdrawStudentInput,
     ) -> EnrollmentType:
-        return activate_enrollment(
+        return withdraw_student_service(
             enrollment_id=input.enrollment_id,
         )
 
@@ -103,7 +103,7 @@ class EnrollmentMutation:
         self,
         input: PromoteStudentInput,
     ) -> EnrollmentType:
-        return promote_student(
+        return promote_student_service(
             enrollment_id=input.enrollment_id,
             academic_session_id=input.academic_session_id,
             academic_term_id=input.academic_term_id,
@@ -118,7 +118,7 @@ class EnrollmentMutation:
         self,
         input: TransferStudentInput,
     ) -> EnrollmentType:
-        return transfer_student(
+        return transfer_student_service(
             enrollment_id=input.enrollment_id,
             academic_session_id=input.academic_session_id,
             academic_term_id=input.academic_term_id,

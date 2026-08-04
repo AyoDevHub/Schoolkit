@@ -44,6 +44,7 @@ LOCAL_APPS = [
     'accounts',
     'schools',
     'people',
+    'billing',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS +  LOCAL_APPS
@@ -181,3 +182,12 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# -------------------------------------------------------------------------
+# Paystack Configuration
+# -------------------------------------------------------------------------
+
+PAYSTACK_PUBLIC_KEY = os.getenv("PAYSTACK_PUBLIC_KEY")
+
+PAYSTACK_SECRET_KEY = os.getenv("PAYSTACK_SECRET_KEY")

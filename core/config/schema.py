@@ -30,6 +30,19 @@ from people.graphql.student_guardian.mutations import StudentGuardianMutation
 from people.graphql.enrollment.queries import EnrollmentQuery
 from people.graphql.enrollment.mutations import EnrollmentMutation
 
+from billing.graphql.fee_item.queries import FeeItemQuery
+from billing.graphql.fee_item.mutations import FeeItemMutation
+
+from billing.graphql.fee_schedule.queries import FeeScheduleQuery
+from billing.graphql.fee_schedule.mutations import FeeScheduleMutation
+
+from billing.graphql.fee_schedule_item.queries import FeeScheduleItemQuery
+from billing.graphql.fee_schedule_item.mutations import FeeScheduleItemMutation
+
+from billing.graphql.discount.queries import DiscountQuery
+from billing.graphql.discount.mutations import DiscountMutation
+
+
 @strawberry.type
 class Query(
     UserQuery,
@@ -43,6 +56,10 @@ class Query(
     GuardianQuery,
     StudentGuardianQuery,
     EnrollmentQuery,
+    FeeItemQuery,
+    FeeScheduleQuery,
+    FeeScheduleItemQuery,
+    DiscountQuery,
 ):
     pass
 
@@ -60,6 +77,10 @@ class Mutation(
     GuardianMutation,
     StudentGuardianMutation,
     EnrollmentMutation,
+    FeeItemMutation,
+    FeeScheduleMutation,
+    FeeScheduleItemMutation,
+    DiscountMutation,
 ):
     pass
 
