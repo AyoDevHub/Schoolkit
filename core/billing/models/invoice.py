@@ -1,7 +1,9 @@
 import uuid
 from decimal import Decimal
-
+from django.db.models import Sum
 from django.db import models
+
+from billing.models.payment import PaymentStatus
 
 
 class InvoiceStatus(models.TextChoices):

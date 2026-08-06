@@ -42,7 +42,21 @@ from billing.graphql.fee_schedule_item.mutations import FeeScheduleItemMutation
 from billing.graphql.discount.queries import DiscountQuery
 from billing.graphql.discount.mutations import DiscountMutation
 
+from billing.graphql.payment.queries import PaymentQuery
+from billing.graphql.payment.mutations import PaymentMutation
 
+from billing.graphql.invoice.mutations import InvoiceMutation
+from billing.graphql.invoice.queries import InvoiceQuery
+
+from billing.graphql.receipt.queries import ReceiptQuery
+from billing.graphql.receipt.mutations import ReceiptMutation
+
+from billing.graphql.student_credit.queries import StudentCreditQuery
+from billing.graphql.student_credit.mutations import StudentCreditMutation
+
+from billing.graphql.ledger_entry.queries import LedgerEntryQuery
+
+from billing.graphql.webhook_event.queries import WebhookEventQuery
 @strawberry.type
 class Query(
     UserQuery,
@@ -60,6 +74,12 @@ class Query(
     FeeScheduleQuery,
     FeeScheduleItemQuery,
     DiscountQuery,
+    PaymentQuery,
+    InvoiceQuery,
+    ReceiptQuery,
+    StudentCreditQuery,
+    LedgerEntryQuery,
+    WebhookEventQuery,
 ):
     pass
 
@@ -81,6 +101,10 @@ class Mutation(
     FeeScheduleMutation,
     FeeScheduleItemMutation,
     DiscountMutation,
+    PaymentMutation,
+    InvoiceMutation,
+    ReceiptMutation,
+    StudentCreditMutation,
 ):
     pass
 

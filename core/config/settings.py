@@ -189,5 +189,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # -------------------------------------------------------------------------
 
 PAYSTACK_PUBLIC_KEY = os.getenv("PAYSTACK_PUBLIC_KEY")
-
 PAYSTACK_SECRET_KEY = os.getenv("PAYSTACK_SECRET_KEY")
+
+PAYSTACK_INITIALIZE_URL = os.getenv("PAYSTACK_INITIALIZE_URL")
+PAYSTACK_VERIFY_URL = os.getenv("PAYSTACK_VERIFY_URL")

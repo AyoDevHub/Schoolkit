@@ -104,13 +104,8 @@ class LedgerEntry(models.Model):
         ]
 
     def __str__(self):
-        return (
-            f"{self.student.full_name} - "
-            f"{self.transaction_type} - "
-            f"₦{self.amount}"
-        )
+        return f"{self.student.full_name} - {self.transaction_type} - ₦{self.amount}"
 
-    
     def clean(self):
         references = {
             LedgerTransactionType.INVOICE: self.invoice,
@@ -120,9 +115,7 @@ class LedgerEntry(models.Model):
         }
 
         provided_references = [
-            reference
-            for reference in references.values()
-            if reference is not None
+            reference for reference in references.values() if reference is not None
         ]
 
         if len(provided_references) != 1:
@@ -135,22 +128,17 @@ class LedgerEntry(models.Model):
             self.transaction_type,
         )
 
-        if (
-            self.transaction_type in references
-            and expected_reference is None
-        ):
-            raise ValidationError({
-                "transaction_type": (
-                    f"{self.get_transaction_type_display()} "
-                    "entries must reference the corresponding object."
-                )
-            })
+        if self.transaction_type in references and expected_reference is None:
+            raise ValidationError(
+                {
+                    "transaction_type": (
+                        f"{self.get_transaction_type_display()} "
+                        "entries must reference the corresponding object."
+                    )
+                }
+            )
 
-        if (
-            self.transaction_type == LedgerTransactionType.ADJUSTMENT
-        ):
-            raise ValidationError({
-                "transaction_type": (
-                    "Manual adjustments are not supported yet."
-                )
-            })
+        if self.transaction_type == LedgerTransactionType.ADJUSTMENT:
+            raise ValidationError(
+                {"transaction_type": ("Manual adjustments are not supported yet.")}
+            )
